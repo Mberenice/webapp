@@ -1,0 +1,64 @@
+@charset "ISO-8859-1";
+
+
+
+.toolbar {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0; /* Increase toolbar height */
+}
+
+.toolbar button {
+  background-color: #333;
+  border: none;
+  color: white;
+  padding: 12px 24px; /* Increase button padding */
+  margin: 0 10px; /* Adjust button margin */
+  cursor: pointer;
+  font-size: 20px; /* Increase font size */
+}
+
+.toolbar button:hover {
+  background-color: #555;
+}
+
+body{
+	background-color:pink;
+}
+
+.welcome-header {
+  text-align: center; /* Center-align the text */
+  padding: 20px; /* Add padding to the header for better visibility */
+}
+
+.header-image {
+  width: 50px; /* Set the width of the image */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 10px; /* Adjust margin between image and text */
+  vertical-align: middle; /* Align the image vertically */
+}
+
+.icon-bar {
+  width: 90px; /* Set a specific width */
+  background-color: #555; /* Dark-grey background */
+}
+
+.icon-bar a {
+  display: block; /* Make the links appear below each other instead of side-by-side */
+  text-align: center; /* Center-align text */
+  padding: 16px; /* Add some padding */
+  transition: all 0.3s ease; /* Add transition for hover effects */
+  color: white; /* White text color */
+  font-size: 36px; /* Increased font-size */
+}
+
+.icon-bar a:hover {
+  background-color: #000; /* Add a hover color */
+}
+
+.active {
+  background-color: #04AA6D; /* Add an active/current color */
+}
+
