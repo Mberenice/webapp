@@ -1,0 +1,60 @@
+
+DROP TABLE academic_history CASCADE CONSTRAINTS;
+DROP TABLE housinginfo CASCADE CONSTRAINTS;
+DROP TABLE student_course_enrollment CASCADE CONSTRAINTS;
+DROP TABLE courseinfo CASCADE CONSTRAINTS;
+DROP TABLE contactinfo CASCADE CONSTRAINTS;
+DROP TABLE personalinfo CASCADE CONSTRAINTS;
+DROP TABLE userinfo CASCADE CONSTRAINTS;
+
+-- User Information
+CREATE TABLE userinfo (
+    student_id               NUMBER(10) CONSTRAINT userinfo_student_id_pk PRIMARY KEY,
+    username                 VARCHAR(50),
+    email                    VARCHAR(50),
+    password                 VARCHAR(50));
+
+-- Personal Details
+CREATE TABLE personalinfo (
+    student_id               NUMBER(10) CONSTRAINT personalinfo_student_id_fk REFERENCES userinfo(student_id),
+    fname                    VARCHAR(50),
+    lname                    VARCHAR(50),
+    gender                   CHAR(1),
+    DoB                      DATE,
+    nationality              VARCHAR(30),
+    language                 VARCHAR(20),
+    visainfo                 CHAR(2),
+    CONSTRAINT personalinfo_pk PRIMARY KEY (student_id));
+
+-- Contact Information
+CREATE TABLE contactinfo (
+    student_id               NUMBER(10) CONSTRAINT contactinfo_student_id_fk REFERENCES userinfo(student_id),
+    phonenum                 NUMBER(10),
+    address                  VARCHAR2(255),
+    CONSTRAINT contactinfo_pk PRIMARY KEY (student_id));
+
+-- Academic Details
+
+-- Course Enrollment
+CREATE TABLE courseinfo (
+    course_id NUMBER(10) CONSTRAINT courseinfo_course_id_pk PRIMARY KEY,
+    cname VARCHAR(50)
+);
+
+CREATE TABLE student_course_enrollment (
+    student_id               NUMBER(10) CONSTRAINT student_course_enrollment_student_id_fk REFERENCES userinfo(student_id),
+    course_id                NUMBER(10) CONSTRAINT student_course_enrollment_course_id_fk REFERENCES courseinfo(course_id),
+    CONSTRAINT student_course_enrollment_pk PRIMARY KEY (student_id, course_id));
+
+-- Academic History
+CREATE TABLE academic_history (
+    student_id               NUMBER(10) CONSTRAINT academic_history_student_id_fk REFERENCES userinfo(student_id),
+    gpa                      NUMBER(3, 2), -- Assuming a GPA scale from 0 to 4 with two decimal places
+    classification           VARCHAR(20), -- e.g., Freshman, Sophomore, Junior, Senior
+    CONSTRAINT academic_history_pk PRIMARY KEY (student_id));
+
+-- Housing Information
+CREATE TABLE housinginfo (
+    student_id               NUMBER(10) CONSTRAINT housinginfo_student_id_fk REFERENCES userinfo(student_id),
+    -- Add housing information columns as needed
+    CONSTRAINT housinginfo_pk PRIMARY KEY (student_id));
