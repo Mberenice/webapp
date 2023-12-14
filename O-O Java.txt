@@ -1,4 +1,4 @@
-
+-- Drop existing tables (if they exist)
 DROP TABLE academic_history CASCADE CONSTRAINTS;
 DROP TABLE housinginfo CASCADE CONSTRAINTS;
 DROP TABLE student_course_enrollment CASCADE CONSTRAINTS;
@@ -6,32 +6,44 @@ DROP TABLE courseinfo CASCADE CONSTRAINTS;
 DROP TABLE contactinfo CASCADE CONSTRAINTS;
 DROP TABLE personalinfo CASCADE CONSTRAINTS;
 DROP TABLE userinfo CASCADE CONSTRAINTS;
+DROP TABLE scholarships CASCADE CONSTRAINTS;
+DROP TABLE clubs CASCADE CONSTRAINTS;
+DROP TABLE tutoring CASCADE CONSTRAINTS;
+DROP TABLE career_service CASCADE CONSTRAINTS;
+DROP TABLE advisor_office CASCADE CONSTRAINTS;
+DROP TABLE financial_resource CASCADE CONSTRAINTS;
+DROP TABLE about CASCADE CONSTRAINTS;
+DROP TABLE contact CASCADE CONSTRAINTS;
+DROP TABLE home CASCADE CONSTRAINTS;
 
 -- User Information
 CREATE TABLE userinfo (
-    student_id               NUMBER(10) CONSTRAINT userinfo_student_id_pk PRIMARY KEY,
-    username                 VARCHAR(50),
-    email                    VARCHAR(50),
-    password                 VARCHAR(50));
+    student_id NUMBER(10) CONSTRAINT userinfo_student_id_pk PRIMARY KEY,
+    username VARCHAR(50),
+    email VARCHAR(50),
+    password VARCHAR(50)
+);
 
 -- Personal Details
 CREATE TABLE personalinfo (
-    student_id               NUMBER(10) CONSTRAINT personalinfo_student_id_fk REFERENCES userinfo(student_id),
-    fname                    VARCHAR(50),
-    lname                    VARCHAR(50),
-    gender                   CHAR(1),
-    DoB                      DATE,
-    nationality              VARCHAR(30),
-    language                 VARCHAR(20),
-    visainfo                 CHAR(2),
-    CONSTRAINT personalinfo_pk PRIMARY KEY (student_id));
+    student_id NUMBER(10) CONSTRAINT personalinfo_student_id_fk REFERENCES userinfo(student_id),
+    fname VARCHAR(50),
+    lname VARCHAR(50),
+    gender CHAR(1),
+    DoB DATE,
+    nationality VARCHAR(30),
+    language VARCHAR(20),
+    visainfo CHAR(2),
+    CONSTRAINT personalinfo_pk PRIMARY KEY (student_id)
+);
 
 -- Contact Information
 CREATE TABLE contactinfo (
-    student_id               NUMBER(10) CONSTRAINT contactinfo_student_id_fk REFERENCES userinfo(student_id),
-    phonenum                 NUMBER(10),
-    address                  VARCHAR2(255),
-    CONSTRAINT contactinfo_pk PRIMARY KEY (student_id));
+    student_id NUMBER(10) CONSTRAINT contactinfo_student_id_fk REFERENCES userinfo(student_id),
+    phonenum NUMBER(10),
+    address VARCHAR2(255),
+    CONSTRAINT contactinfo_pk PRIMARY KEY (student_id)
+);
 
 -- Academic Details
 
@@ -42,19 +54,96 @@ CREATE TABLE courseinfo (
 );
 
 CREATE TABLE student_course_enrollment (
-    student_id               NUMBER(10) CONSTRAINT student_course_enrollment_student_id_fk REFERENCES userinfo(student_id),
-    course_id                NUMBER(10) CONSTRAINT student_course_enrollment_course_id_fk REFERENCES courseinfo(course_id),
-    CONSTRAINT student_course_enrollment_pk PRIMARY KEY (student_id, course_id));
+    student_id NUMBER(10) CONSTRAINT student_course_enrollment_student_id_fk REFERENCES userinfo(student_id),
+    course_id NUMBER(10) CONSTRAINT student_course_enrollment_course_id_fk REFERENCES courseinfo(course_id),
+    CONSTRAINT student_course_enrollment_pk PRIMARY KEY (student_id, course_id)
+);
 
 -- Academic History
 CREATE TABLE academic_history (
-    student_id               NUMBER(10) CONSTRAINT academic_history_student_id_fk REFERENCES userinfo(student_id),
-    gpa                      NUMBER(3, 2), -- Assuming a GPA scale from 0 to 4 with two decimal places
-    classification           VARCHAR(20), -- e.g., Freshman, Sophomore, Junior, Senior
-    CONSTRAINT academic_history_pk PRIMARY KEY (student_id));
+    student_id NUMBER(10) CONSTRAINT academic_history_student_id_fk REFERENCES userinfo(student_id),
+    gpa NUMBER(3, 2),
+    classification VARCHAR(20),
+    CONSTRAINT academic_history_pk PRIMARY KEY (student_id)
+);
 
 -- Housing Information
 CREATE TABLE housinginfo (
-    student_id               NUMBER(10) CONSTRAINT housinginfo_student_id_fk REFERENCES userinfo(student_id),
+    student_id NUMBER(10) CONSTRAINT housinginfo_student_id_fk REFERENCES userinfo(student_id),
     -- Add housing information columns as needed
-    CONSTRAINT housinginfo_pk PRIMARY KEY (student_id));
+    CONSTRAINT housinginfo_pk PRIMARY KEY (student_id)
+);
+
+-- Scholarships Table
+CREATE TABLE scholarships (
+    scholarship_id INT PRIMARY KEY,
+    title VARCHAR(255),
+    description TEXT,
+    eligibility_criteria TEXT,
+    application_deadline DATE
+);
+
+-- Clubs Table
+CREATE TABLE clubs (
+    club_id INT PRIMARY KEY,
+    name VARCHAR(255),
+    description TEXT,
+    president VARCHAR(50),
+    founded_year INT
+);
+
+-- Tutoring Table
+CREATE TABLE tutoring (
+    tutoring_id INT PRIMARY KEY,
+    subject VARCHAR(255),
+    tutor_name VARCHAR(50),
+    schedule TEXT,
+    location VARCHAR(255)
+);
+
+-- Career Service Table
+CREATE TABLE career_service (
+    service_id INT PRIMARY KEY,
+    service_name VARCHAR(255),
+    description TEXT,
+    contact_person VARCHAR(50),
+    contact_email VARCHAR(50)
+);
+
+-- Advisor Office Table
+CREATE TABLE advisor_office (
+    advisor_id INT PRIMARY KEY,
+    advisor_name VARCHAR(255),
+    office_location VARCHAR(255),
+    office_hours TEXT,
+    contact_email VARCHAR(50)
+);
+
+-- Financial Resource Table
+CREATE TABLE financial_resource (
+    resource_id INT PRIMARY KEY,
+    resource_name VARCHAR(255),
+    description TEXT,
+    contact_person VARCHAR(50),
+    contact_email VARCHAR(50)
+);
+
+-- About Table
+CREATE TABLE about (
+    about_id INT PRIMARY KEY,
+    content TEXT
+);
+
+-- Contact Table
+CREATE TABLE contact (
+    contact_id INT PRIMARY KEY,
+    contact_name VARCHAR(255),
+    email VARCHAR(50),
+    phone_number VARCHAR(15)
+);
+
+-- Home Table
+CREATE TABLE home (
+    home_id INT PRIMARY KEY,
+    welcome_message TEXT
+);

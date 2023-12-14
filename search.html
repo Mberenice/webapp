@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Student Resources</title>
+    <link rel="stylesheet" type="text/css" href="Stylesheet.css">
+    <script src="javascript.js"></script>
+    <style>
+        /* Add your custom styles for the search bar here */
+        .search-container {
+            display: flex;
+            justify-content: flex-end;
+            margin: 10px;
+        }
+
+        .search-input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .search-button {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="welcome-header">
+        <img src="uca.jpeg" alt="UCA" class="header-image">
+        Welcome To International Student Resources
+    </h1>
+
+    <div class="topnav">
+        <a class="active" href="index.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <div class="dropdown">
+            <button class="dropbtn">Information
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="scholarships.html">Scholarships</a>
+                <a href="clubs.html">Clubs</a>
+                <a href="tutoring.html">Tutoring</a>
+                <a href="career-service.html">Career Service</a>
+                <a href="advisor-office.html">Advisor Office</a>
+                <a href="#">Financial Resource</a>
+            </div>
+        </div>
+        <a href="about.html">About</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search...">
+        <button class="search-button" onclick="search()">Search</button>
+    </div>
+
+    <div class="container">
+        <img src="snow.jpg" alt="Snow1" width="50%">
+    </div>
+    <!-- Text overlay -->
+    <div class="text">
+        Welcome to the new environment. We've got all the information you need here, and if you require any additional information, feel free to contact one of us.
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <img src="Migisha.jpg" alt="Jane" style="width:30%">
+                <div class="container">
+                    <h2>Bernice Migisha</h2>
+                    <p class="title">Senior</p>
+                    <p>Computer Science Major </p>
+                    <p>Graduating 2024</p>
+                    <p><button class="button" onclick="loadPage('contact.html')">Contact</button></p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <img src="Lacina.jpg" alt="Jane" style="width:30%">
+                <div class="container">
+                    <h2>Lacina Sanogo</h2>
+                    <p class="title">Senior</p>
+                    <p>Computer Science Major </p>
+                    <p>Graduating 2024</p>
+                    <p><button class="button" onclick="loadPage('contact-lacina.html')">Contact</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scholarship-section">
+        <h2>Scholarships</h2>
+        <div class="content">
+            <p>Explore the available scholarships for international students:</p>
+            <ul>
+                <li><a href="#">Merit-Based Scholarships</a></li>
+                <li><a href="#">Need-Based Scholarships</a></li>
+                <li><a href="#">International Student Scholarships</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="contact" class="information-section">
+        <h2>Contact</h2>
+        <div class="content">
+            <p>Get in touch with us:</p>
+            <ul>
+                <li>Email: lsanogo@cub.uca.edu</li>
+                <li>Phone: (501)932-2245</li>
+                <li>Office Hours: Monday-Friday, 9 AM - 5 PM</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="clubs" class="information-section">
+        <h2>Clubs</h2>
+        <div class="content">
+            <p>Discover the various clubs you can join:</p>
+            <ul>
+                <li><a href="#">Programming Club</a></li>
+                <li><a href="#">International Students Club</a></li>
+                <li><a href="#">Sports Club</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="tutoring" class="information-section">
+        <h2>Tutoring</h2>
+        <div class="content">
+            <p>Get academic support through tutoring services:</p>
+            <ul>
+                <li><a href="#">Math Tutoring</a></li>
+                <li><a href="#">Writing Center</a></li>
+                <li><a href="#">Language Assistance</a></li>
+                <li><a href="#">Coding Tutoring</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="career-service" class="information-section">
+        <h2>Career Service</h2>
+        <div class="content">
+            <p>Explore our career services for international students:</p>
+            <ul>
+                <li>Resume Building Workshops</li>
+                <li>Job Search Assistance</li>
+                <li>Internship Opportunities</li>
+                <li>Networking Events</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="advisor-office" class="information-section">
+        <h2>Advisor Office</h2>
+        <div class="content">
+            <p>Visit our Advisor Office for personalized guidance:</p>
+            <ul>
+                <li>Academic Advising</li>
+                <li>Course Planning Assistance</li>
+                <li>Study Abroad Programs</li>
+                <li>Career Path Counseling</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Add your custom search functionality here
+        function search() {
+            // Replace this with your actual search implementation
+            alert("Performing search...");
+        }
+
+        // Function to load pages dynamically
+        function loadPage(page) {
+            fetch(page)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('content-container').innerHTML = data;
+                });
+        }
+    </script>
+
+</body>
+</html>
